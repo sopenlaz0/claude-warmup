@@ -16,20 +16,22 @@ working. A GitHub Actions cron sends "hi" to Haiku at 6:15 AM. The window
 floors to 6 AM, runs until 11. By the time you've hit the limit, it resets
 right away. Your next message anchors a fresh window through 4 PM.
 
+Example schedule:
 ```
-            6am   7    8    9   10   11   12   1pm   2    3    4
-             |    |    |    |    |    |    |    |    |    |    |
+           6am    7     8     9    10    11    12    1pm    2     3     4     5     6
+             |     |     |     |     |     |     |     |     |     |     |     |     |
 
-  Before:              [========= window 1 =========]
-                          work 8:30-11  ░░ dead ░░
-                                                     [=== window 2 ===]
-                                                        work 1-4
-
-  After:     [========= window 1 =========]
-               idle        work 8:30-11
-                                          [========= window 2 =========]
-                                             work 11-4
-```
+Before:                  [========== window 1 =========]
+                          work ~8:30am-11am  ░░ dead ░░
+                                                       [========== window 2 =========]
+                                                                work ~1pm-6pm
+          cron trigger
+               │
+               ▼
+After:       [========== window 1 =========]
+              ░░ idle ░░  work ~8:30am-11am
+                                           [========== window 2 =========]
+                                                   work ~11am-4pm
 
 ## How it works
 
