@@ -2,7 +2,9 @@ name: Claude Code Warmup
 
 on:
   schedule:
-    - cron: '15 9 * * 1-5'
+    # 11:15 PM UTC = 6:15 AM Cambodia time (UTC+7)
+    # Runs Sunday night - Thursday night (for Monday-Friday workdays)
+    - cron: "15 23 * * 0-4"
   workflow_dispatch: {}
 
 concurrency:
